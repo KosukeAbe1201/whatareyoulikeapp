@@ -1,0 +1,29 @@
+<%= form_with(model: @posts, local: true, url: post_create7_path) do |form| %>
+  質問
+  <%= form.text_area :question %>
+
+  答え
+  <label>
+    <%= form.radio_button :flag, 1 %>
+    <%= form.text_area :answer1 %>
+  </label>
+
+  <label>
+    <%= form.radio_button :flag, 2 %>
+    <%= form.text_area :answer2 %>
+  </label>
+
+  <label>
+    <%= form.radio_button :flag, 3 %>
+    <%= form.text_area :answer3 %>
+  </label>
+
+  <label>
+    <%= form.radio_button :flag, 4 %>
+    <%= form.text_area :answer4 %>
+  </label>
+
+
+  <%= form.submit %>
+<% end %>
+

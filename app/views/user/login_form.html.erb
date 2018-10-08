@@ -1,0 +1,14 @@
+<%= form_tag("/login") do %>
+
+  <% if @error_message %>
+    <div class="form-error">
+      <%= @error_message %>
+    </div>
+  <% end %>
+
+
+  name<input name="name" value="名前を入力してください">
+  password<input type="password" name="password" value="パスワードを入力してください">
+
+  <input type="submit">
+<% end %>

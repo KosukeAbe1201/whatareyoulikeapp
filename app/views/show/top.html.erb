@@ -1,0 +1,9 @@
+<%= form_tag("/#{session[:user_id]}/show/answer") do %>
+
+
+  <%=@create.name %>さんの作成したクイズ
+
+  name<textarea name="name" ></textarea>
+
+  <input type="submit">
+<% end %>

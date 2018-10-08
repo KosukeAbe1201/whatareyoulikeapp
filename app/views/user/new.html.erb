@@ -1,0 +1,14 @@
+<% if @error_message %>
+  <div class="form-error">
+    <%= @error_message %>
+  </div>
+<% end %>
+
+
+<%= form_tag("/create") do %>
+
+  name<input name="name" value="名前を入力してください">
+  password<input name="password" value="パスワードを入力してください">
+
+  <input type="submit">
+<% end %>
