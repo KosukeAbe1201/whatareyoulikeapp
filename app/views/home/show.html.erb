@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="signup-message">
+    メニュー
+  </div>
+  <div class="menu_wrapper">
+    <%if @post_counter < 5 %>
+      <%=link_to "クイズを作る", {:controller => "post", :action => "q1"}, {:class => "menu-btn"}%>
+    <%end %>
+    <%if @post_counter >= 5 %>
+      <%=link_to "クイズを削除", post_destroy_path,:confirm => "本当に削除しますか?", method: :post, :class => "menu-btn"%>
+    <%end %>
+  </div>
+</div>

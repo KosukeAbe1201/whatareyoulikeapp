@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   before_action :set_current_user
   before_action :set_posts_counter
 
@@ -19,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    if @current_user == nil
+    unless @current_user
       flash[:notice] = "ログインが必要です"
       redirect_to("/login")
     end
@@ -30,8 +29,4 @@ class ApplicationController < ActionController::Base
       redirect_to("/#{session[:user_id]}/menu")
     end
   end
-
-
-
-
 end

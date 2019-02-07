@@ -1,4 +1,3 @@
-
 <div class="container">
   <% if @error_message %>
     <div class="form-error">
@@ -6,29 +5,27 @@
     </div>
   <% end %>
   <div class="post_wrapper">
-
-
     <div class="post_content">
-      <%= form_with(model: @posts, local: true, url: post_create3_path) do |form| %>
-        <div class="qNumber3">
-          Question 3
+      <%= form_with(model: @posts, local: true, url: post_create1_path) do |form| %>
+        <div class="qNumber1">
+          Question 1
         </div>
-
+        
         <div class="question">
-          <%= form.text_area :question, :class => "textarea",:size => "55x5", value: "わたしが人生で一番嬉しかったのは？"%>
+          <%= form.text_area :question, :class => "textarea",:size => "55x5", value: "わたしが告白した回数は？"%>
         </div>
 
         <div class="ans">
           <span id="num">1</span> <%= form.radio_button :flag, 1 , :class => "radio-btn",:id =>"btn1"%>
           <label for = "btn1" class="label"></label>
-          <%= form.text_area :answer1, :class => "textarea", :size => "40x3", value: "大きな仕事で成功！"%>
+          <%= form.text_area :answer1, :class => "textarea", :size => "40x3", value: "0回"%>
         </div>
 
         <div class="ans">
           <label>
             <span id="num">2</span>  <%= form.radio_button :flag, 2 , :class => "radio-btn",:id =>"btn2"%>
             <label for = "btn2" class="label"></label>
-            <%= form.text_area :answer2, :class => "textarea",:size => "40x3",value: "ついに彼女ができた！" %>
+            <%= form.text_area :answer2, :class => "textarea",:size => "40x3",value: "3回" %>
           </label>
         </div>
 
@@ -36,7 +33,7 @@
           <label>
             <span id="num">3</span> <%= form.radio_button :flag, 3 , :class => "radio-btn",:id =>"btn3"%>
             <label for = "btn3" class="label"></label>
-            <%= form.text_area :answer3, :class => "textarea",:size => "40x3",value: "宝くじで100万ゲット！" %>
+            <%= form.text_area :answer3, :class => "textarea",:size => "40x3",value: "5回" %>
           </label>
         </div>
 
@@ -44,7 +41,7 @@
           <label>
             <span id="num">4</span> <%= form.radio_button :flag, 4 , :class => "radio-btn",:id =>"btn4"%>
             <label for = "btn4" class="label"></label>
-            <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "うれしいことなど何もない..." %>
+            <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "10回" %>
           </label>
         </div>
 

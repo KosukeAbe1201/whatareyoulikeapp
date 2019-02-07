@@ -1,28 +1,21 @@
 <div class="container">
-  <div class="signup-message">Result</div>
+  <div class="signup-message">
+    Result
+  </div>
   <div class="show_wrapper">
     <div class="result_content">
-
-
-
-
-
-
-      <p>お疲れ様です。5問中<%=@count.correct %>問正解です。</p>
-
-
-
+      <p>お疲れ様です。5問中<%= @count.correct %>問正解です。</p>
       <table>
         <tr>
           <td>名前</td>
           <td>得点</td>
         <tr>
-<% @results.each do |user| %>
+        <% @results.each do |user| %>
           <tr>
-  <td><%=user.name %></td>
-  <td><%=user.correct %>点</td>
+            <td><%=user.name %></td>
+            <td><%=user.correct %>点</td>
           <tr>
-<% end %>
+        <% end %>
       </table>
     </div>
   </div>

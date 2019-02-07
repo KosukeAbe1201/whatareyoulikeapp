@@ -1,0 +1,17 @@
+<div class="container">
+  <% if @error_message %>
+    <div class="form-error">
+      <%= @error_message %>
+    </div>
+  <% end %>
+  <div class="post_wrapper">
+    <div class="ready_content">
+      <%= form_tag("/#{session[:user_id]}/ready") do %>
+        <h1>Completed!</h1>
+        <p>秘密の合言葉を設定してください。</p>
+        <p><input name="keyword" size="53x1" class="form"></p>
+        <input type="submit" value="決定" class="signup-btn">
+      <% end %>
+    </div>
+  </div>
+</div>

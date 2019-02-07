@@ -1,19 +1,15 @@
 <div class="container">
   <div class="top_wrapper">
     <div class="top_content">
-
-
       <h2>What are you like?は、友達があなたのことをどれだけ知っているか試すクイズサービスです。</h2>
       <p>仲のいい友達も、意外と知らないあなたのこと。</p>
       <p>むかし大好きだったミュージシャンは？</p>
       <p>あなただけのお気に入りスポットは？</p>
       <p>人生で一番うれしかった思い出は？</p>
       <p>あなたのこと、もっと知ってもらいませんか？</p>
-
       <div class = "top-btns">
-      <%=link_to "今すぐクイズを作る", {:controller => 'user', :action => 'signup_form'}, {:class => "menu-btn"}%>
+      <%=link_to "今すぐクイズを作る", {:controller => 'user', :action => 'new'}, {:class => "menu-btn"}%>
       </div>
-
       <h1></h1>
       <h2>使い方</h2>
       <div class="img_list">
@@ -29,9 +25,9 @@
         <p>クイズが完成したら、SNSにシェアしましょう。</p>
       <img src="mock3.jpg" class="image3">
       </div>
-
-
     </div>
   </div>
-  <div class="copyright">© 2018 WhatAreYouLike</div>
+  <div class="copyright">
+    © 2018 WhatAreYouLike
+  </div>
 </div>

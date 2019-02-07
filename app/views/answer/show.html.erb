@@ -4,20 +4,14 @@
       <%= @error_message %>
     </div>
   <% end %>
-  <div class="signup-message">Quiz</div>
+  <div class="signup-message">
+    Quiz
+  </div>
   <div class="show_wrapper">
-
-
-<%= form_tag("/show/name") do %>
-
-
+    <%= form_tag("/name") do %>
       <p>あなたの名前を入力してください。</p>
-
-
-  <p><input name="name" size="53×1" class="form"></p>
-
-  <input type="submit" class="signup-btn">
-<% end %>
-
+      <p><input name="name" size="53×1" class="form"></p>
+      <input type="submit" class="signup-btn">
+    <% end %>
   </div>
 </div>

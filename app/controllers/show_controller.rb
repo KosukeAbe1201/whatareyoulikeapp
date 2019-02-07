@@ -1,33 +1,16 @@
 class ShowController < ApplicationController
-
-
-  #キーワード照合
   def top_form
     @user = Keyword.find_by(keyword: params[:keyword])
     if @user != nil
-    session[:answerer_id] = @user.user_id
-    @username = User.find(session[:answerer_id])
-    redirect_to("/show/name")
+      session[:answerer_id] = @user.user_id
+      @username = User.find(session[:answerer_id])
+      redirect_to("/name")
     else
       @error_message = "合言葉が存在しません"
-      render("show/top")
+      render("keyword")
     end
   end
 
-  #回答者名前生成
-  def name_form
-    @answer = Answer.new(name: params[:name],incorrect: session[:answerer_id])
-    if @answer.save
-    @name = Answer.find_by(name: params[:name])
-    session[:answerer] = @name.name
-    redirect_to("/#{session[:answerer_id]}/show/q1")
-    else
-      @error_message = "既に使用されている名前です"
-      render("show/name")
-    end
-  end
-
-  #問題画面
   def q1
     @post = Answer.show_question(1,session[:answerer_id])
   end
@@ -68,8 +51,6 @@ class ShowController < ApplicationController
     @post = Answer.show_question(10,session[:answerer_id])
   end
 
-
-  #問題画面生成
   def create1
     @post = Answer.show_question(1,session[:answerer_id])
     @answer = Answer.find_by(name: session[:answerer])
@@ -80,7 +61,7 @@ class ShowController < ApplicationController
     else
       flash[:notice] = "不正解です。正解は「"+eval("@post.answer" + @post.flag.to_s) + "」でした。"
     end
-    redirect_to("/#{session[:answerer_id]}/show/q2")
+    redirect_to("/#{session[:answerer_id]}/q2")
   end
 
   def create2
@@ -93,7 +74,7 @@ class ShowController < ApplicationController
     else
       flash[:notice] = "不正解です。正解は「"+eval("@post.answer" + @post.flag.to_s) + "」でした。"
     end
-    redirect_to("/#{session[:answerer_id]}/show/q3")
+    redirect_to("/#{session[:answerer_id]}/q3")
   end
 
   def create3
@@ -106,7 +87,7 @@ class ShowController < ApplicationController
     else
       flash[:notice] = "不正解です。正解は「"+eval("@post.answer" + @post.flag.to_s) + "」でした。"
     end
-    redirect_to("/#{session[:answerer_id]}/show/q4")
+    redirect_to("/#{session[:answerer_id]}/q4")
   end
 
   def create4
@@ -119,7 +100,7 @@ class ShowController < ApplicationController
     else
       flash[:notice] = "不正解です。正解は「"+eval("@post.answer" + @post.flag.to_s) + "」でした。"
     end
-    redirect_to("/#{session[:answerer_id]}/show/q5")
+    redirect_to("/#{session[:answerer_id]}/q5")
   end
 
   def create5
@@ -132,31 +113,11 @@ class ShowController < ApplicationController
     else
       flash[:notice] = "不正解です。正解は「"+eval("@post.answer" + @post.flag.to_s) + "」でした。"
     end
-    redirect_to("/#{session[:answerer_id]}/show/result")
+    redirect_to("/#{session[:answerer_id]}/result")
   end
 
-
-  #結果表示
   def result
     @count = Answer.find_by(name: session[:answerer])
     @results = Answer.where(incorrect: session[:answerer_id])
   end
-
-  def create
-    @question = Question.new(content: params[:content], user_id: session[:answerer_id])
-    @question.save
-    flash[:notice] = "質問を送りました。"
-    redirect_to("/#{session[:user_id]}/show/result")
-  end
-
-  def destroy
-    Question.where(user_id: session[:user_id]).delete_all
-    flash[:notice] = "質問を削除しました"
-    redirect_to("/#{session[:user_id]}/show/question")
-  end
-
-  def question
-    @results = Answer.where(incorrect: session[:user_id])
-  end
-
 end
