@@ -1,9 +1,13 @@
 class UserController < ApplicationController
-  def new
-    @user = User.new
+  before_action :forbid_login_user, {only: [:signup,:signup_form,:login_form,:login]}
+
+  #新規登録画面
+  def signup
+
   end
 
-  def create
+  #新規ユーザー生成
+  def signup_form
     @user = User.new(name: params[:name], password: params[:password])
     if @user.save
       flash[:notice] = "登録を完了しました"
@@ -12,17 +16,20 @@ class UserController < ApplicationController
       redirect_to("/#{@user.id}/menu")
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
-      @email = params[:email]
+      @name = params[:name]
       @password = params[:password]
-      @error_message = "名前、またはパスワードに不備があります。パスワードは8文字以上で入力してください。"
-      render("new")
+      @error_message = "名前が既に使用されている、またはパスワードに不備があります。パスワードは8文字以上で入力してください。"
+      render("signup")
     end
   end
 
-  def login_form
+  #ログイン画面
+  def login
+
   end
 
-  def login
+  #ログイン生成
+  def login_form
     @user = User.find_by(name: params[:name])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
@@ -30,10 +37,20 @@ class UserController < ApplicationController
       redirect_to("/#{@user.id}/menu")
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
-      @email = params[:email]
+      @name = params[:name]
       @password = params[:password]
-      render("login_form")
+      render("login")
     end
+  end
+
+  #ログアウト画面
+
+
+  #ログアウト生成
+  def logout
+    session[:user_id] = nil
+    flash[:notice] = "ログアウトしました"
+    redirect_to("/")
   end
 
 end

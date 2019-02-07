@@ -6,4 +6,7 @@ class Post < ApplicationRecord
   validates :answer4, {presence: true}
   validates :flag, {presence: true}
 
+
+  belongs_to :user
+
 end

@@ -1,29 +1,55 @@
-<%= form_with(model: @posts, local: true, url: post_create5_path) do |form| %>
-  質問
-  <%= form.text_area :question %>
 
-  答え
-  <label>
-    <%= form.radio_button :flag, 1 %>
-    <%= form.text_area :answer1 %>
-  </label>
-
-  <label>
-    <%= form.radio_button :flag, 2 %>
-    <%= form.text_area :answer2 %>
-  </label>
-
-  <label>
-    <%= form.radio_button :flag, 3 %>
-    <%= form.text_area :answer3 %>
-  </label>
-
-  <label>
-    <%= form.radio_button :flag, 4 %>
-    <%= form.text_area :answer4 %>
-  </label>
+<div class="container">
+  <% if @error_message %>
+    <div class="form-error">
+      <%= @error_message %>
+    </div>
+  <% end %>
+  <div class="post_wrapper">
 
 
-  <%= form.submit %>
-<% end %>
+    <div class="post_content">
+      <%= form_with(model: @posts, local: true, url: post_create5_path) do |form| %>
+        <div class="qNumber5">
+          Question 5
+        </div>
 
+        <div class="question">
+          <%= form.text_area :question, :class => "textarea",:size => "55x5" , value: "わたしの人生最大の失敗は？"%>
+        </div>
+
+        <div class="ans">
+          <span id="num">1</span> <%= form.radio_button :flag, 1 , :class => "radio-btn",:id =>"btn1"%>
+          <label for = "btn1" class="label"></label>
+          <%= form.text_area :answer1, :class => "textarea", :size => "40x3", value: "先生をお母さんと呼んだ"%>
+        </div>
+
+        <div class="ans">
+          <label>
+            <span id="num">2</span>  <%= form.radio_button :flag, 2 , :class => "radio-btn",:id =>"btn2"%>
+            <label for = "btn2" class="label"></label>
+            <%= form.text_area :answer2, :class => "textarea",:size => "40x3",value: "飛行機の搭乗時間を間違えた" %>
+          </label>
+        </div>
+
+        <div class="ans">
+          <label>
+            <span id="num">3</span> <%= form.radio_button :flag, 3 , :class => "radio-btn",:id =>"btn3"%>
+            <label for = "btn3" class="label"></label>
+            <%= form.text_area :answer3, :class => "textarea",:size => "40x3",value: "酔っ払って財布を失くした" %>
+          </label>
+        </div>
+
+        <div class="ans">
+          <label>
+            <span id="num">4</span> <%= form.radio_button :flag, 4 , :class => "radio-btn",:id =>"btn4"%>
+            <label for = "btn4" class="label"></label>
+            <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "我が人生に一片の悔いなし" %>
+          </label>
+        </div>
+
+        <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
+      <% end %>
+    </div>
+  </div>
+</div>

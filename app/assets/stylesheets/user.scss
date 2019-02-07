@@ -1,3 +1,55 @@
-// Place all the styles related to the user controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user_wrapper{
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+.menu_wrapper{
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+.user_content{
+  text-align: center;
+  background-color: #000000;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+p{
+  font-size: 13px;
+  text-align: center;
+}
+
+.signup-message{
+  text-align: center;
+  padding:.5em 0;
+  color: #7e7e7e;
+  font-size: 20px;
+  letter-spacing:5px;
+  border-bottom:3px solid #4fccb4;
+  position: relative;
+  line-height:1.4em;
+}
+
+.signup-btn{
+  border-radius: 5px;
+  width: 330px;
+  height: 30px;
+  font-size: 15px;
+  border-style: none;
+  background-color: #4fccb4;
+  color: white;
+  cursor: pointer;
+}
+
+.menu-btn{
+  text-align: center;
+  width: 150px;
+  padding: 10px;
+  margin: 5px;
+  color: white;
+  background-color: #4fccb4;
+  border-radius: 5px;
+}

@@ -1,29 +1,55 @@
-<%= form_with(model: @posts, local: true, url: post_create4_path) do |form| %>
-  質問
-  <%= form.text_area :question %>
 
-  答え
-  <label>
-    <%= form.radio_button :flag, 1 %>
-    <%= form.text_area :answer1 %>
-  </label>
-
-  <label>
-    <%= form.radio_button :flag, 2 %>
-    <%= form.text_area :answer2 %>
-  </label>
-
-  <label>
-    <%= form.radio_button :flag, 3 %>
-    <%= form.text_area :answer3 %>
-  </label>
-
-  <label>
-    <%= form.radio_button :flag, 4 %>
-    <%= form.text_area :answer4 %>
-  </label>
+<div class="container">
+  <% if @error_message %>
+    <div class="form-error">
+      <%= @error_message %>
+    </div>
+  <% end %>
+  <div class="post_wrapper">
 
 
-  <%= form.submit %>
-<% end %>
+    <div class="post_content">
+      <%= form_with(model: @posts, local: true, url: post_create4_path) do |form| %>
+        <div class="qNumber4">
+          Question 4
+        </div>
 
+        <div class="question">
+          <%= form.text_area :question, :class => "textarea",:size => "55x5", value: "わたしが苦手なものは？" %>
+        </div>
+
+        <div class="ans">
+          <span id="num">1</span> <%= form.radio_button :flag, 1 , :class => "radio-btn",:id =>"btn1"%>
+          <label for = "btn1" class="label"></label>
+          <%= form.text_area :answer1, :class => "textarea", :size => "40x3", value: "毛虫"%>
+        </div>
+
+        <div class="ans">
+          <label>
+            <span id="num">2</span>  <%= form.radio_button :flag, 2 , :class => "radio-btn",:id =>"btn2"%>
+            <label for = "btn2" class="label"></label>
+            <%= form.text_area :answer2, :class => "textarea",:size => "40x3",value: "パクチー" %>
+          </label>
+        </div>
+
+        <div class="ans">
+          <label>
+            <span id="num">3</span> <%= form.radio_button :flag, 3 , :class => "radio-btn",:id =>"btn3"%>
+            <label for = "btn3" class="label"></label>
+            <%= form.text_area :answer3, :class => "textarea",:size => "40x3",value: "真夏の暑さ" %>
+          </label>
+        </div>
+
+        <div class="ans">
+          <label>
+            <span id="num">4</span> <%= form.radio_button :flag, 4 , :class => "radio-btn",:id =>"btn4"%>
+            <label for = "btn4" class="label"></label>
+            <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "根性論" %>
+          </label>
+        </div>
+
+        <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
+      <% end %>
+    </div>
+  </div>
+</div>

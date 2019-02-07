@@ -1,0 +1,21 @@
+<div class="container">
+  <% if @error_message %>
+    <div class="form-error">
+      <%= @error_message %>
+    </div>
+  <% end %>
+  <div class="signup-message">新規登録</div>
+<div class="user_wrapper">
+
+
+
+
+<%= form_tag("/signup") do %>
+
+  <p>名前　　　<input name="name" value="<%=@name %>" size="35x1" class="form"></p>
+    <p>パスワード<input name="password" value="<%=@password %>" size="35x1" class="form"></p>
+
+    <input type="submit" class="signup-btn" value="登録">
+<% end %>
+</div>
+</div>

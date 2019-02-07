@@ -1,9 +1,21 @@
-<%= form_tag("/#{session[:user_id]}/show/answer") do %>
+<div class="container">
+  <% if @error_message %>
+    <div class="form-error">
+      <%= @error_message %>
+    </div>
+  <% end %>
+  <div class="signup-message">クイズに答える</div>
+  <div class="show_wrapper">
+
+<%= form_tag("/show/top") do %>
 
 
-  <%=@create.name %>さんの作成したクイズ
+  <p>秘密の合言葉を入力してください。</p>
 
-  name<textarea name="name" ></textarea>
+  <p><input name="keyword" size="53×1" class="form"></p>
 
-  <input type="submit">
+  <input type="submit" class="signup-btn">
 <% end %>
+
+  </div>
+</div>

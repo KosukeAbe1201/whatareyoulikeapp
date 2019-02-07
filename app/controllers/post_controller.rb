@@ -1,44 +1,8 @@
 class PostController < ApplicationController
-  def new1
-    @post = Post.new
-  end
+  before_action :authenticate_user
+  before_action :forbid_make_quiz, only: [:create1,:create2,:create3,:create4,:create5]
 
-  def new2
-    @post = Post.new
-  end
-
-  def new3
-    @post = Post.new
-  end
-
-  def new4
-    @post = Post.new
-  end
-
-  def new5
-    @post = Post.new
-  end
-
-  def new6
-    @post = Post.new
-  end
-
-  def new7
-    @post = Post.new
-  end
-
-  def new8
-    @post = Post.new
-  end
-
-  def new9
-    @post = Post.new
-  end
-
-  def new10
-    @post = Post.new
-  end
-
+  #投稿画面生成
   def create1
     @post = Post.new(user_id: session[:user_id],
                      question: params[:question],
@@ -49,7 +13,8 @@ class PostController < ApplicationController
                      answer4: params[:answer4],
                      flag: params[:flag]
     )
-    if @post.save
+    if
+      @post.save
       redirect_to("/#{session[:user_id]}/post/new2")
     else
       @error_message = "全ての項目を入力してください"
@@ -146,7 +111,7 @@ class PostController < ApplicationController
                      flag: params[:flag]
                      )
     if @post.save
-      redirect_to("/#{session[:user_id]}/post/new6")
+      redirect_to("/#{session[:user_id]}/post/ready")
     else
       @error_message = "全ての項目を入力してください"
       @question = params[:question],
@@ -159,125 +124,34 @@ class PostController < ApplicationController
     end
   end
 
-  def create6
-    @post = Post.new(user_id: session[:user_id],
-                     question: params[:question],
-                     question_num: 6,
-                     answer1: params[:answer1],
-                     answer2: params[:answer2],
-                     answer3: params[:answer3],
-                     answer4: params[:answer4],
-                     flag: params[:flag]
-                     )
-    if @post.save
-      redirect_to("/#{session[:user_id]}/post/new7")
-    else
-      @error_message = "全ての項目を入力してください"
-      @question = params[:question],
-          @answer1 = params[:answer1],
-          @answer2 = params[:answer2],
-          @answer3 = params[:answer3],
-          @answer4 = params[:answer4],
-          @flag = params[:flag]
-      render("new6")
-    end
+  def destroy
+    Post.where(user_id: session[:user_id]).delete_all
+    Keyword.where(user_id: session[:user_id]).delete_all
+    Answer.where(incorrect: session[:user_id]).delete_all
+    flash[:notice] = "クイズを削除しました"
+    redirect_to("/#{session[:user_id]}/menu")
   end
 
-  def create7
-    @post = Post.new(user_id: session[:user_id],
-                     question: params[:question],
-                     question_num: 7,
-                     answer1: params[:answer1],
-                     answer2: params[:answer2],
-                     answer3: params[:answer3],
-                     answer4: params[:answer4],
-                     flag: params[:flag]
-                     )
-    if @post.save
-      redirect_to("/#{session[:user_id]}/post/new8")
+
+
+
+  #キーワード入力画面
+
+
+  #キーワード生成
+  def ready_form
+    @keyword = Keyword.new(user_id: session[:user_id],keyword: params[:keyword])
+    if @keyword.save
+    redirect_to("/#{session[:user_id]}/post/share")
     else
-      @error_message = "全ての項目を入力してください"
-      @question = params[:question],
-          @answer1 = params[:answer1],
-          @answer2 = params[:answer2],
-          @answer3 = params[:answer3],
-          @answer4 = params[:answer4],
-          @flag = params[:flag]
-      render("new7")
-    end
+      @error_message = "合言葉が入力されていない、または既に使用されています"
+      render("ready")
+      end
   end
 
-  def create8
-    @post = Post.new(user_id: session[:user_id],
-                     question: params[:question],
-                     question_num: 8,
-                     answer1: params[:answer1],
-                     answer2: params[:answer2],
-                     answer3: params[:answer3],
-                     answer4: params[:answer4],
-                     flag: params[:flag]
-                     )
-    if @post.save
-      redirect_to("/#{session[:user_id]}/post/new9")
-    else
-      @error_message = "全ての項目を入力してください"
-      @question = params[:question],
-          @answer1 = params[:answer1],
-          @answer2 = params[:answer2],
-          @answer3 = params[:answer3],
-          @answer4 = params[:answer4],
-          @flag = params[:flag]
-      render("new8")
-    end
+  #シェア用画面
+  def share
+    @keyword = Keyword.find_by(user_id: session[:user_id])
   end
-
-  def create9
-    @post = Post.new(user_id: session[:user_id],
-                     question: params[:question],
-                     question_num: 9,
-                     answer1: params[:answer1],
-                     answer2: params[:answer2],
-                     answer3: params[:answer3],
-                     answer4: params[:answer4],
-                     flag: params[:flag]
-                     )
-    if @post.save
-      redirect_to("/#{session[:user_id]}/post/new10")
-    else
-      @error_message = "全ての項目を入力してください"
-      @question = params[:question],
-          @answer1 = params[:answer1],
-          @answer2 = params[:answer2],
-          @answer3 = params[:answer3],
-          @answer4 = params[:answer4],
-          @flag = params[:flag]
-      render("new9")
-    end
-  end
-
-  def create10
-    @post = Post.new(user_id: session[:user_id],
-                     question: params[:question],
-                     question_num: 10,
-                     answer1: params[:answer1],
-                     answer2: params[:answer2],
-                     answer3: params[:answer3],
-                     answer4: params[:answer4],
-                     flag: params[:flag]
-                     )
-    if @post.save
-      redirect_to("/#{session[:user_id]}/show/top")
-    else
-      @error_message = "全ての項目を入力してください"
-      @question = params[:question],
-          @answer1 = params[:answer1],
-          @answer2 = params[:answer2],
-          @answer3 = params[:answer3],
-          @answer4 = params[:answer4],
-          @flag = params[:flag]
-      render("new10")
-    end
-  end
-
 
 end

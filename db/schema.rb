@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_062642) do
+ActiveRecord::Schema.define(version: 2018_10_21_092949) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "flag"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 2018_10_07_062642) do
     t.datetime "updated_at", null: false
     t.integer "correct", default: 0
     t.integer "incorrect", default: 0
+    t.integer "user_id", default: 0
+  end
+
+  create_table "keywords", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "keyword"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -34,11 +42,19 @@ ActiveRecord::Schema.define(version: 2018_10_07_062642) do
     t.integer "flag"
   end
 
+  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "keyword", default: "0"
   end
 
 end

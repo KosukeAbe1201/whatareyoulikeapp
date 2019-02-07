@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
-  post "/:id/show/answer" => "show#answer"
+
+
+  get "show/top" => "show#top"
+  post "show/top" => "show#top_form"
+  get "show/name" =>"show#name"
+  post "show/name" =>"show#name_form"
+
+
   get "/:id/show/top" => "show#top"
   get '/:id/show/q1' => "show#q1"
   get '/:id/show/q2' => "show#q2"
@@ -23,6 +30,9 @@ Rails.application.routes.draw do
   post "show/create9" => "show#create9"
   post "show/create10" => "show#create10"
   get "/:id/show/result" => "show#result"
+  post "show/create" => "show#create"
+  get "/:id/show/question" => "show#question"
+  post "show/destroy" => "show#destroy"
 
 
   get '/:id/post/new1' =>"post#new1"
@@ -30,30 +40,30 @@ Rails.application.routes.draw do
   get '/:id/post/new3' =>"post#new3"
   get '/:id/post/new4' =>"post#new4"
   get '/:id/post/new5' =>"post#new5"
-  get '/:id/post/new6' =>"post#new6"
-  get '/:id/post/new7' =>"post#new7"
-  get '/:id/post/new8' =>"post#new8"
-  get '/:id/post/new9' =>"post#new9"
-  get '/:id/post/new10' =>"post#new10"
+  get "/:id/post/ready" =>"post#ready"
+  post "/:id/post/ready" =>"post#ready_form"
+  get "/:id/post/share" =>"post#share"
+
 
   post "post/create1" => "post#create1"
   post "post/create2" => "post#create2"
   post "post/create3" => "post#create3"
   post "post/create4" => "post#create4"
   post "post/create5" => "post#create5"
-  post "post/create6" => "post#create6"
-  post "post/create7" => "post#create7"
-  post "post/create8" => "post#create8"
-  post "post/create9" => "post#create9"
-  post "post/create10" => "post#create10"
+  post "post/destroy" => "post#destroy"
 
-
+  get "/:id/menu" => "home#menu"
   get '/' => "home#top"
 
-  get 'signup' => "user#new"
-  post "create" => "user#create"
-  post "login" => "user#login"
-  get "login_form" => "user#login_form"
-  get "/:id/menu" => "home#menu"
+
+
+  get 'signup' => "user#signup"
+  post "signup" => "user#signup_form"
+  get "login" => "user#login"
+  post "login" => "user#login_form"
+  get "logout" => "user#logout"
+  post "logout" => "user#logout"
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
