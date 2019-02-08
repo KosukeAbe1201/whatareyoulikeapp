@@ -109,7 +109,7 @@ class PostController < ApplicationController
                      flag: params[:flag]
                      )
     if @post.save
-      redirect_to("/#{session[:user_id]}/ready")
+      redirect_to("/keywords/new")
     else
       @error_message = "全ての項目を入力してください"
       @question = params[:question],

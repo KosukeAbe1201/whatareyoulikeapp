@@ -8,7 +8,7 @@
     新規登録
   </div>
   <div class="user_wrapper">
-    <%= form_tag("/user") do %>
+    <%= form_tag("/users") do %>
       <p>名前<input name="name" value="<%=@name %>" size="35x1" class="form"></p>
       <p>パスワード<input type="password" name="password" value="<%= @password %>" size="35x1" class="form"></p>
       <input type="submit" class="signup-btn" value="登録">

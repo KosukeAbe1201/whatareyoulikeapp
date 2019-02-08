@@ -4,7 +4,7 @@ class ShowController < ApplicationController
     if @user != nil
       session[:answerer_id] = @user.user_id
       @username = User.find(session[:answerer_id])
-      redirect_to("/name")
+      redirect_to("/answers/show")
     else
       @error_message = "合言葉が存在しません"
       render("keyword")

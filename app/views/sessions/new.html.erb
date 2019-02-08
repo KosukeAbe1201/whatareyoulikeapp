@@ -8,7 +8,7 @@
     ログイン
   </div>
   <div class="user_wrapper">
-    <%= form_tag("/login") do %>
+    <%= form_tag("/sessions") do %>
       <p>ユーザー名　<input name="name" value="<%=@name %>" size="35x1" class="form"></p>
       <p>パスワード　<input type="password" name="password" value="<%=@password %>" size="35x1" class="form"></p>
       <input type="submit" class="signup-btn" value="ログインする">

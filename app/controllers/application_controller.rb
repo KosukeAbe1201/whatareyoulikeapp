@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   def forbid_make_quiz
     if @post_counter >= 5
       flash[:notice] = "クイズを削除してください"
-      redirect_to("/#{session[:user_id]}/menu")
+      redirect_to user_path(@current_user)
     end
   end
 
@@ -20,13 +20,13 @@ class ApplicationController < ActionController::Base
   def authenticate_user
     unless @current_user
       flash[:notice] = "ログインが必要です"
-      redirect_to("/login")
+      redirect_to new_session_path
     end
   end
 
   def forbid_login_user
     if @current_user
-      redirect_to("/#{session[:user_id]}/menu")
+      redirect_to user_path(@current_user)
     end
   end
 end

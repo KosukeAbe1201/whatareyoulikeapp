@@ -1,7 +1,11 @@
-class UserController < ApplicationController
-  before_action :forbid_login_user, {only: [:signup,:signup_form,:login_form,:login]}
+class UsersController < ApplicationController
+  protect_from_forgery except: :create
+  before_action :forbid_login_user
 
   def new
+  end
+
+  def show
   end
 
   def create
@@ -10,13 +14,13 @@ class UserController < ApplicationController
       flash[:notice] = "登録を完了しました"
       @user = User.find_by(name: params[:name])
       session[:user_id] = @user.id
-      redirect_to("/#{@user.id}/menu")
+      redirect_to @user
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
       @name = params[:name]
       @password = params[:password]
       @error_message = "名前が既に使用されている、またはパスワードに不備があります。パスワードは8文字以上で入力してください。"
-      render("user/new")
+      render("users/new")
     end
   end
 end

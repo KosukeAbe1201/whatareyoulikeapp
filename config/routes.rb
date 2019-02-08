@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
   root "home#top"
-  get "/:id/menu" => "home#show"
 
-  resources :user, only: [:create, :new]
+  resources :users, only: [:create, :new, :show]
+  resources :sessions, only: [:create, :new, :destroy]
+  resources :keywords, only: [:create, :show, :new]
+  resources :show, only: [:create, :destroy]
+  resources :answers, only: [:show, :create]
 
-  get "login" => "session#new"
-  post "login" => "session#create"
-  post "logout" => "session#destroy"
-  
   get "keyword" => "show#top"
   post "keyword" => "show#top_form"
   get "/:id/keyword" => "show#top"
-
   get '/:id/q1' => "show#q1"
   get '/:id/q2' => "show#q2"
   get '/:id/q3' => "show#q3"
@@ -23,7 +21,6 @@ Rails.application.routes.draw do
   post "show/create4" => "show#create4"
   post "show/create5" => "show#create5"
   get "/:id/result" => "show#result"
-  resources :show, only: [:create, :destroy]
 
   get '/:id/post/q1' => "post#q1"
   get '/:id/post/q2' => "post#q2"
@@ -36,11 +33,4 @@ Rails.application.routes.draw do
   post "post/create4" => "post#create4"
   post "post/create5" => "post#create5"
   post "post/destroy" => "post#destroy"
-
-  get "/:id/ready" => "keyword#new"
-  post "/:id/ready" => "keyword#create"
-  get "/:id/share" => "keyword#show"
-
-  get "name" => "answer#show"
-  post "name" => "answer#create"
 end
