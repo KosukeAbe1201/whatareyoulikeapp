@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  protect_from_forgery except: :create
-  before_action :forbid_login_user
-
+  before_action :forbid_login_user, except: [:show]
+  
   def new
   end
 

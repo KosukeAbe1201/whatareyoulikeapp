@@ -5,12 +5,12 @@
   <div class="show_wrapper">
     <div class="show_content">
       <div class="qNumber1">
-           Question 1
+           Question 4
       </div>
       <div class="question">
         <%=@post.question %>
       </div>
-      <%= form_with(model: @answers, local: true, url: show_create1_path) do |form| %>
+      <%= form_with(model: @answers, local: true, url: shows_path) do |form| %>
         <label>
           <div class="choice">
             <%= form.radio_button :flag, "1" %> <%= @post.answer1 %>
@@ -31,6 +31,7 @@
             <%= form.radio_button :flag, "4" %> <%= @post.answer4 %>
           </div>
         </label>
+        <%= form.hidden_field :num, :value => "4" %>
         <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
       <% end %>
     </div>

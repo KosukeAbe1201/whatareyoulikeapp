@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   def forbid_login_user
     if @current_user
-      redirect_to user_path(@current_user)
+      redirect_to root_path
     end
   end
 end

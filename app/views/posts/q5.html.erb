@@ -6,26 +6,26 @@
   <% end %>
   <div class="post_wrapper">
     <div class="post_content">
-      <%= form_with(model: @posts, local: true, url: post_create2_path) do |form| %>
-        <div class="qNumber2">
-          Question 2
+      <%= form_with(model: @posts, local: true, url: posts_path) do |form| %>
+        <div class="qNumber5">
+          Question 5
         </div>
-        
+
         <div class="question">
-          <%= form.text_area :question, :class => "textarea",:size => "55x5", value: "わたしの一番好きな食べ物は？" %>
+          <%= form.text_area :question, :class => "textarea",:size => "55x5" , value: "わたしの人生最大の失敗は？"%>
         </div>
 
         <div class="ans">
           <span id="num">1</span> <%= form.radio_button :flag, 1 , :class => "radio-btn",:id =>"btn1"%>
           <label for = "btn1" class="label"></label>
-          <%= form.text_area :answer1, :class => "textarea", :size => "40x3", value: "焼肉"%>
+          <%= form.text_area :answer1, :class => "textarea", :size => "40x3", value: "先生をお母さんと呼んだ"%>
         </div>
 
         <div class="ans">
           <label>
             <span id="num">2</span>  <%= form.radio_button :flag, 2 , :class => "radio-btn",:id =>"btn2"%>
             <label for = "btn2" class="label"></label>
-            <%= form.text_area :answer2, :class => "textarea",:size => "40x3",value: "寿司" %>
+            <%= form.text_area :answer2, :class => "textarea",:size => "40x3",value: "飛行機の搭乗時間を間違えた" %>
           </label>
         </div>
 
@@ -33,7 +33,7 @@
           <label>
             <span id="num">3</span> <%= form.radio_button :flag, 3 , :class => "radio-btn",:id =>"btn3"%>
             <label for = "btn3" class="label"></label>
-            <%= form.text_area :answer3, :class => "textarea",:size => "40x3",value: "カレー" %>
+            <%= form.text_area :answer3, :class => "textarea",:size => "40x3",value: "酔っ払って財布を失くした" %>
           </label>
         </div>
 
@@ -41,10 +41,10 @@
           <label>
             <span id="num">4</span> <%= form.radio_button :flag, 4 , :class => "radio-btn",:id =>"btn4"%>
             <label for = "btn4" class="label"></label>
-            <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "ラーメン" %>
+            <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "我が人生に一片の悔いなし" %>
           </label>
         </div>
-
+        <%= form.hidden_field :num, :value => "5" %>
         <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
       <% end %>
     </div>
