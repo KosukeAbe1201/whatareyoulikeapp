@@ -11,27 +11,27 @@ class AnswersController < ApplicationController
   end
 
   def q1
-    @post = Answer.show_question(1, session[:answerer_id])
+    @post = Answer.search_question(1, session[:answerer_id])
   end
 
   def q2
-    @post = Answer.show_question(2, session[:answerer_id])
+    @post = Answer.search_question(2, session[:answerer_id])
   end
 
   def q3
-    @post = Answer.show_question(3, session[:answerer_id])
+    @post = Answer.search_question(3, session[:answerer_id])
   end
 
   def q4
-    @post = Answer.show_question(4, session[:answerer_id])
+    @post = Answer.search_question(4, session[:answerer_id])
   end
 
   def q5
-    @post = Answer.show_question(5, session[:answerer_id])
+    @post = Answer.search_question(5, session[:answerer_id])
   end
 
   def update
-    @post = Answer.show_question(params[:answer][:question_num], session[:answerer_id])
+    @post = Answer.search_question(params[:answer][:question_num], session[:answerer_id])
     @answer = Answer.find_by(name: session[:answerer])
     @answer.update!(flag: params[:answer][:flag])
     if @answer.flag == @post.flag
@@ -50,7 +50,6 @@ class AnswersController < ApplicationController
 
   def result
     @answer = Answer.find_by(name: session[:answerer])
-    @user = User.find_by(id: @answer.user_id)
   end
 
   def destroy
