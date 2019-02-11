@@ -24,7 +24,7 @@
           <%= link_to("クイズに答える",{:controller => 'keywords', :action => 'top'}, :style=>"text-decoration: none; color:white;") %>
         </li>
         <li>
-          <%= link_to("ログアウト", sessions_path, method: :delete, :style=> "text-decoration: none; color:white;") %>
+          <%= link_to("ログアウト", session_path, method: :delete, :style=> "text-decoration: none; color:white;") %>
         </li>
       <%end %>
     </ul>

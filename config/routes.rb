@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   get "keywords/top/:id" => "keywords#top"
   get "keywords/top" => "keywords#top"
   post "keywords/top" => "keywords#form"
-  resources :sessions, only: [:create, :new, :destroy]
+  resources :sessions, only: [:create, :new]
+  resource :session, only: [:destroy]
   resources :keywords, only: [:create, :show, :new]
   resources :answers, only: [:show, :create]
   resources :users, only: [:create, :new, :show]
