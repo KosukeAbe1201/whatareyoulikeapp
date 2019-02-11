@@ -5,7 +5,7 @@ module SessionsHelper
   end
 
   def logged_in?
-      !session[:user_id].nil?
+    !session[:user_id].nil?
   end
 
   def log_out
