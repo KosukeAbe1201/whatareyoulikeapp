@@ -1,14 +1,10 @@
 <div class="container">
-  <% if @error_message %>
-    <div class="form-error">
-      <%= @error_message %>
-    </div>
-  <% end %>
+  <%= render "share/error_message", error_message: @error_message %>
   <div class="signup-message">
     クイズに答える
   </div>
   <div class="show_wrapper">
-    <%= form_tag("/keyword") do %>
+    <%= form_tag("/keywords/top") do %>
       <p>秘密の合言葉を入力してください。</p>
       <p><input name="keyword" size="53×1" class="form"></p>
       <input type="submit" class="signup-btn">

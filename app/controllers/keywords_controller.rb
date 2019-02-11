@@ -1,6 +1,10 @@
 class KeywordsController < ApplicationController
+  def new
+    @keyword = Keyword.new
+  end
+
   def create
-    @keyword = Keyword.new(user_id: session[:user_id],keyword: params[:keyword])
+    @keyword = Keyword.new(keyword_param)
     if @keyword.save
       redirect_to("/keywords/show")
     else
@@ -17,11 +21,19 @@ class KeywordsController < ApplicationController
     @user = Keyword.find_by(keyword: params[:keyword])
     if @user != nil
       session[:answerer_id] = @user.user_id
-      @username = User.find(session[:answerer_id])
       redirect_to("/answers/show")
     else
       @error_message = "合言葉が存在しません"
       render("keywords/top")
     end
+  end
+
+  private
+
+  def keyword_param
+    params.require(:keyword).permit(
+      :keyword,
+      :user_id
+    )
   end
 end

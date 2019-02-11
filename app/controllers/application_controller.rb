@@ -18,15 +18,13 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    unless @current_user
+    if @current_user == nil
       flash[:notice] = "ログインが必要です"
       redirect_to new_session_path
     end
   end
 
   def forbid_login_user
-    if @current_user
-      redirect_to root_path
-    end
+    redirect_to root_path if @current_user
   end
 end

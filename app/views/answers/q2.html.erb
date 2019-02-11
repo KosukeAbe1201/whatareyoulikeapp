@@ -8,9 +8,9 @@
            Question 2
       </div>
       <div class="question">
-        <%=@post.question %>
+        <%= @post.question %>
       </div>
-      <%= form_with(model: @answers, local: true, url: shows_path) do |form| %>
+      <%= form_with(model: Answer.new, local: true, url: update_path) do |form| %>
         <label>
           <div class="choice">
             <%= form.radio_button :flag, "1" %> <%= @post.answer1 %>
@@ -31,7 +31,8 @@
             <%= form.radio_button :flag, "4" %> <%= @post.answer4 %>
           </div>
         </label>
-        <%= form.hidden_field :num, :value => "2" %>
+        <%= form.hidden_field :question_num, :value => "2" %>
+        <%= form.hidden_field :incorrect, :value => session[:answerer_id] %>
         <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
       <% end %>
     </div>

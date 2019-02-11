@@ -13,7 +13,7 @@
           <%= link_to("ログイン",{:controller => 'sessions', :action => 'new'}, :style=>" text-decoration: none; color:white;") %>
         </li>
         <li>
-          <%= link_to("クイズに答える",{:controller => 'shows', :action => 'top'}, :style=>"text-decoration: none; color:white;") %>
+          <%= link_to("クイズに答える",{:controller => 'keywords', :action => 'top'}, :style=>"text-decoration: none; color:white;") %>
         </li>
       <%end %>
       <%if current_user != nil %>
@@ -21,7 +21,7 @@
           <%= link_to("メニュー", user_path(current_user), :style=> "text-decoration: none; color:white;") %>
         </li>
         <li>
-          <%= link_to("クイズに答える",{:controller => 'shows', :action => 'top'}, :style=>"text-decoration: none; color:white;") %>
+          <%= link_to("クイズに答える",{:controller => 'keywords', :action => 'top'}, :style=>"text-decoration: none; color:white;") %>
         </li>
         <li>
           <%= link_to("ログアウト", sessions_path, method: :delete, :style=> "text-decoration: none; color:white;") %>

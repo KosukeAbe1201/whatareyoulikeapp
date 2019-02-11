@@ -1,12 +1,8 @@
 <div class="container">
-  <% if @error_message %>
-    <div class="form-error">
-      <%= @error_message %>
-    </div>
-  <% end %>
+  <%= render "share/error_message", error_message: @error_message %>
   <div class="post_wrapper">
     <div class="post_content">
-      <%= form_with(model: @posts, local: true, url: posts_path) do |form| %>
+      <%= form_with(model: Post.new, local: true, url: posts_path) do |form| %>
         <div class="qNumber1">
           Question 1
         </div>
@@ -44,7 +40,8 @@
             <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "10回" %>
           </label>
         </div>
-        <%= form.hidden_field :num, :value => "1" %>
+        <%= form.hidden_field :question_num, :value => "1" %>
+        <%= form.hidden_field :user_id, :value => session[:user_id] %>
         <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
       <% end %>
     </div>
