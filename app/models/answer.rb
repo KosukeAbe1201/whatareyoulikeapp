@@ -7,6 +7,14 @@ class Answer < ApplicationRecord
     Post.find_by(question_num: question_num ,user_id: user_id)
   end
 
+  def self.search_user(id)
+    User.find_by(id: id)
+  end
+
+  def self.search_keyword(user_id)
+    Keyword.find_by(user_id: user_id)
+  end
+
   def self.delete_all_questions(user_id)
     Post.where(user_id: user_id).delete_all
     Keyword.where(user_id: user_id).delete_all
