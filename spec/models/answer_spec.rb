@@ -19,12 +19,6 @@ RSpec.describe Answer, type: :model do
     end
   end
 
-  describe "#delete_all_questions" do
-      it "returns 0" do
-          expect(Answer.delete_all_questions(1)).to eq 0
-      end
-  end
-
   describe "#update_correct_num" do
       it "correct num plus 1" do
           Answer.update_correct_num(valid_answer.name, valid_answer)
