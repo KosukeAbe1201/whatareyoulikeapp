@@ -5,10 +5,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: params[:name])
-    if @user && @user.authenticate(params[:password])
-      log_in(@user)
-      redirect_to user_path(@user)
+    user = User.find_by(name: params[:name])
+    if user && user.authenticate(params[:password])
+      log_in(user)
+      redirect_to user_path(user)
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
       render("sessions/new")

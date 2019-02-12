@@ -1,8 +1,8 @@
 class AnswersController < ApplicationController
   def create
-    @answer = Answer.new(answer_params)
-    if @answer.save
-      session[:answerer] = @answer.name
+    answer = Answer.new(answer_params)
+    if answer.save
+      session[:answerer] = answer.name
       redirect_to("/#{session[:answerer_id]}/question1")
     else
       @error_message = "既に使用されている名前です"
@@ -11,34 +11,34 @@ class AnswersController < ApplicationController
   end
 
   def q1
-    @post = Answer.search_question(1, session[:answerer_id])
+    @post = Answer.search_post(1, session[:answerer_id])
   end
 
   def q2
-    @post = Answer.search_question(2, session[:answerer_id])
+    @post = Answer.search_post(2, session[:answerer_id])
   end
 
   def q3
-    @post = Answer.search_question(3, session[:answerer_id])
+    @post = Answer.search_post(3, session[:answerer_id])
   end
 
   def q4
-    @post = Answer.search_question(4, session[:answerer_id])
+    @post = Answer.search_post(4, session[:answerer_id])
   end
 
   def q5
-    @post = Answer.search_question(5, session[:answerer_id])
+    @post = Answer.search_post(5, session[:answerer_id])
   end
 
   def update
-    @post = Answer.search_question(params[:answer][:question_num], session[:answerer_id])
-    @answer = Answer.find_by(name: session[:answerer])
-    @answer.update!(flag: params[:answer][:flag])
-    if @answer.flag == @post.flag
-      Answer.find_by(name: session[:answerer]).update(correct: @answer.correct += 1)
+    post = Answer.search_post(params[:answer][:question_num], session[:answerer_id])
+    answer = Answer.find_answer_by_name(session[:answerer])
+    answer.update!(flag: params[:answer][:flag])
+    if answer.flag == post.flag
+      Answer.update_correct_num(session[:answerer], answer)
       flash[:notice] = "正解です！"
     else
-      flash[:notice] = "不正解です。正解は「"+eval("@post.answer" + @post.flag.to_s) + "」でした。"
+      flash[:notice] = "不正解です。正解は「"+eval("post.answer" + post.flag.to_s) + "」でした。"
     end
 
     if params[:answer][:question_num] == "5"
@@ -49,13 +49,11 @@ class AnswersController < ApplicationController
   end
 
   def result
-    @answer = Answer.find_by(name: session[:answerer])
+    @answer = Answer.find_answer_by_name(session[:answerer])
   end
 
   def destroy
-    Post.where(user_id: session[:user_id]).delete_all
-    Keyword.where(user_id: session[:user_id]).delete_all
-    Answer.where(incorrect: session[:user_id]).delete_all
+    Answer.delete_all_questions(session[:user_id])
     flash[:notice] = "クイズを削除しました"
     redirect_to root_path
   end

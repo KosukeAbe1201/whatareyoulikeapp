@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_action :forbid_make_quiz, except: [:destroy]
 
   def create
-    @post = Post.new(post_params)
-    if @post.save
+    post = Post.new(post_params)
+    if post.save
       if params[:post][:question_num] == "5"
         redirect_to("/keywords/new")
       else

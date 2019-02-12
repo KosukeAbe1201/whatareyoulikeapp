@@ -1,21 +1,41 @@
 require 'rails_helper'
 RSpec.describe Answer, type: :model do
-  let(:valid_answer) { create(:answer) }
-  let(:invalid_answer) { create(:answer, name: "") }
+  let!(:valid_answer) { create(:answer, user_id: 1) }
+  let!(:invalid_answer) { create(:answer, name: "") }
   let!(:post) { create(:post, user_id: 1) }
+  let!(:keyword) { create(:keyword, user_id: 1) }
 
-  describe "#search_question" do
+  describe "#search_post" do
     context "when it has a post" do
       it "returns correct data" do
-          expect(Answer.search_question(1, 1)).to eq post
+          expect(Answer.search_post(1, 1)).to eq post
       end
     end
 
     context "when it does not have any posts" do
       it "returns nil" do
-          expect(Answer.search_question(1, 2)).to eq nil
+          expect(Answer.search_post(1, 2)).to eq nil
       end
     end
+  end
+
+  describe "#delete_all_questions" do
+      it "returns 0" do
+          expect(Answer.delete_all_questions(1)).to eq 0
+      end
+  end
+
+  describe "#update_correct_num" do
+      it "correct num plus 1" do
+          Answer.update_correct_num(valid_answer.name, valid_answer)
+          expect(valid_answer.correct).to eq 1
+      end
+  end
+
+  describe "#find_answer_by_name" do
+      it "returns correct answer" do
+          expect(Answer.find_answer_by_name(valid_answer.name)).to eq valid_answer
+      end
   end
 
   describe "(validation)" do
