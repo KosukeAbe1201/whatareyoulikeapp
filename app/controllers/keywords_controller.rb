@@ -6,7 +6,10 @@ class KeywordsController < ApplicationController
   def create
     keyword = Keyword.new(keyword_param)
     if keyword.save
-      redirect_to("/keywords/show")
+      respond_to do |format|
+        format.html { redirect_to("/keywords/show") }
+        format.js
+      end
     else
       @error_message = "合言葉が入力されていない、または既に使用されています"
       render("keywords/new")

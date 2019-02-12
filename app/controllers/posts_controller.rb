@@ -6,9 +6,15 @@ class PostsController < ApplicationController
     post = Post.new(post_params)
     if post.save
       if params[:post][:question_num] == "5"
-        redirect_to("/keywords/new")
+        respond_to do |format|
+          format.html { redirect_to("/keywords/new") }
+          format.js
+        end
       else
-        redirect_to("/question#{params[:post][:question_num].to_i + 1}")
+        respond_to do |format|
+          format.html { redirect_to("/question#{params[:post][:question_num].to_i + 1}") }
+          format.js
+        end
       end
     else
       @error_message = "全ての項目を入力してください"

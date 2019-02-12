@@ -8,7 +8,7 @@
     新規登録
   </div>
   <div class="user_wrapper">
-    <%= form_with(model: User.new, local: true, url: users_path) do |form| %>
+    <%= form_with(model: User.new, local: true, url: users_path, remote: true) do |form| %>
       <p>名前<%= form.text_field :name, :class => "form", :size => "35x1", :value => @user.name %></p>
       <p>パスワード<%= form.password_field :password, :class => "form", :size => "35x1", :value => @user.password %></p>
       <%= form.submit value="登録", :class => "signup-btn"%>

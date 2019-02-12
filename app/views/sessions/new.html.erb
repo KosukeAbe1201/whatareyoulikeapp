@@ -4,7 +4,7 @@
     ログイン
   </div>
   <div class="user_wrapper">
-    <%= form_with(model: @users, local: true, url: sessions_path) do |form| %>
+    <%= form_with(model: @users, local: true, url: sessions_path, remote: true) do |form| %>
       <p>名前<%= form.text_field :name, :class => "form", :size => "35x1" %></p>
       <p>パスワード<%= form.password_field :password, :class => "form", :size => "35x1" %></p>
       <%= form.submit value="ログインする", :class => "signup-btn"%>

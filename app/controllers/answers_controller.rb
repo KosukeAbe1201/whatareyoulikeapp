@@ -42,9 +42,15 @@ class AnswersController < ApplicationController
     end
 
     if params[:answer][:question_num] == "5"
-      redirect_to("/#{session[:answerer_id]}/result")
+      respond_to do |format|
+        format.html { redirect_to("/#{session[:answerer_id]}/result") }
+        format.js
+      end
     else
-      redirect_to("/#{session[:answerer_id]}/question#{params[:answer][:question_num].to_i + 1}")
+      respond_to do |format|
+        format.html { redirect_to("/#{session[:answerer_id]}/question#{params[:answer][:question_num].to_i + 1}") }
+        format.js
+      end
     end
   end
 

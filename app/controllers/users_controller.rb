@@ -13,7 +13,10 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = "登録を完了しました"
       session[:user_id] = @user.id
-      redirect_to @user
+      respond_to do |format|
+        format.html { redirect_to @user }
+        format.js
+      end
     else
       @error_message = "名前が既に使用されている、またはパスワードに不備があります。パスワードは8文字以上で入力してください。"
       render("users/new")

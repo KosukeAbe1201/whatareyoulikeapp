@@ -8,7 +8,10 @@ class SessionsController < ApplicationController
     user = User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])
       log_in(user)
-      redirect_to user_path(user)
+      respond_to do |format|
+        format.html { redirect_to user_path(user) }
+        format.js
+      end
     else
       @error_message = "メールアドレスまたはパスワードが間違っています"
       render("sessions/new")

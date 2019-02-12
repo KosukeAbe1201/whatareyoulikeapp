@@ -10,7 +10,7 @@
       <div class="question">
         <%= @post.question %>
       </div>
-      <%= form_with(model: Answer.new, local: true, url: update_path) do |form| %>
+      <%= form_with(model: Answer.new, local: true, url: update_path, remote: true) do |form| %>
         <label>
           <div class="choice">
             <%= form.radio_button :flag, "1" %> <%= @post.answer1 %>
