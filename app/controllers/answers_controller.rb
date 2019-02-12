@@ -51,6 +51,7 @@ class AnswersController < ApplicationController
   def result
     @answer = Answer.find_answer_by_name(session[:answerer])
     @user = User.find_by(id: session[:user_id])
+    @keyword = Keyword.find_by(user_id: session[:user_id])
   end
 
   def destroy
