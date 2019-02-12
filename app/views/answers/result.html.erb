@@ -4,13 +4,13 @@
   </div>
   <div class="show_wrapper">
     <div class="result_content">
-      <p>お疲れ様です。5問中<%= @answer.correct %>問正解です。</p>
+      <p><%= @answer.name %>さん、お疲れ様です。5問中<%= @answer.correct %>問正解です。</p>
       <div class="link">
         <div class="twitter">
           <a href="https://twitter.com/share" class="twitter-share-button"
           data-url="https://whatareyoulike.herokuapp.com/keywords/top"
           data-via=""
-          data-text="<%= @user.name %>さんのつくったクイズに5問中<%= @answer.correct %>問正解しました！秘密の合言葉は<%= @keyword.keyword %>です。#whatareyoulike"
+          data-text="<%= @user.name if @user.name != nil %>さんのつくったクイズに5問中<%= @answer.correct %>問正解しました！秘密の合言葉は<%= @keyword.keyword %>です。#whatareyoulike"
           data-related=""
           data-count=""
           data-lang=""
