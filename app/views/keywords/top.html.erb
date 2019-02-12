@@ -4,10 +4,10 @@
     クイズに答える
   </div>
   <div class="show_wrapper">
-    <%= form_tag("/keywords/top") do %>
+    <%= form_with(model: @keywords, local: true, url: keywords_top_path, remote: true) do |form| %>
       <p>秘密の合言葉を入力してください。</p>
-      <p><input name="keyword" size="53×1" class="form"></p>
-      <input value="決定" type="submit" class="signup-btn">
+      <p><%= form.text_field :keyword, :size => "53×1", :class => "form" %></p>
+      <%= form.submit value="決定", :class => "signup-btn" %>
     <% end %>
   </div>
 </div>

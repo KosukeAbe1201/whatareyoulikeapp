@@ -4,10 +4,10 @@
     Quiz
   </div>
   <div class="show_wrapper">
-    <%= form_tag("/answers") do %>
+    <%= form_with(model: Answer.new, local: true, url: answers_path, remote: true) do |form| %>
       <p>あなたの名前を入力してください。</p>
-      <p><input name="answer[name]" size="53×1" class="form"></p>
-      <input value="決定" type="submit" class="signup-btn">
+      <p><%= form.text_field :name, :size => "53×1", :class => "form" %></p>
+      <%= form.submit value="決定", :class => "signup-btn" %>
     <% end %>
   </div>
 </div>

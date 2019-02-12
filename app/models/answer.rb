@@ -18,6 +18,6 @@ class Answer < ApplicationRecord
   def self.delete_all_questions(user_id)
     Post.where(user_id: user_id).delete_all
     Keyword.where(user_id: user_id).delete_all
-    Answer.where(incorrect: user_id).delete_all
+    Answer.where(user_id: user_id).delete_all
   end
 end

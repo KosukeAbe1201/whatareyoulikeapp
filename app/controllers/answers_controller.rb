@@ -3,7 +3,10 @@ class AnswersController < ApplicationController
     answer = Answer.new(answer_params)
     if answer.save
       session[:answerer] = answer.name
-      redirect_to("/#{session[:answerer_id]}/question1")
+      respond_to do |format|
+        format.html { redirect_to("/#{session[:answerer_id]}/question1") }
+        format.js
+      end
     else
       @error_message = "既に使用されている名前です"
       render("answers/show")
@@ -71,7 +74,7 @@ class AnswersController < ApplicationController
     def answer_params
       params.require(:answer).permit(
         :name,
-        :incorrect,
+        :user_id,
         :question_num,
       )
     end

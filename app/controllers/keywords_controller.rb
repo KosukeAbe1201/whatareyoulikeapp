@@ -22,9 +22,12 @@ class KeywordsController < ApplicationController
 
   def form
     keyword = Keyword.find_keyword_by_keyword(params[:keyword])
-    if keyword != nil
+    if keyword
       session[:answerer_id] = keyword.user_id
-      redirect_to("/answers/show")
+      respond_to do |format|
+        format.html { redirect_to("/answers/show") }
+        format.js
+      end
     else
       @error_message = "合言葉が存在しません"
       render("keywords/top")

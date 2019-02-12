@@ -32,7 +32,7 @@
           </div>
         </label>
         <%= form.hidden_field :question_num, :value => "2" %>
-        <%= form.hidden_field :incorrect, :value => session[:answerer_id] %>
+        <%= form.hidden_field :user_id, :value => session[:answerer_id] %>
         <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
       <% end %>
     </div>
