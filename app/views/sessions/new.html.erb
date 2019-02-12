@@ -4,10 +4,10 @@
     ログイン
   </div>
   <div class="user_wrapper">
-    <%= form_tag("/sessions") do %>
-      <p>ユーザー名　<input name="name" value="<%=@user.name %>" size="35x1" class="form"></p>
-      <p>パスワード　<input type="password" name="password" value="<%=@user.password %>" size="35x1" class="form"></p>
-      <input type="submit" class="signup-btn" value="ログインする">
+    <%= form_with(model: @users, local: true, url: sessions_path) do |form| %>
+      <p>名前<%= form.text_field :name, :class => "form", :size => "35x1" %></p>
+      <p>パスワード<%= form.password_field :password, :class => "form", :size => "35x1" %></p>
+      <%= form.submit value="ログインする", :class => "signup-btn"%>
     <% end %>
   </div>
 </div>

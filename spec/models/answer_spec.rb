@@ -5,8 +5,16 @@ RSpec.describe Answer, type: :model do
   let!(:post) { create(:post, user_id: 1) }
 
   describe "#search_question" do
-    it "returns correct post" do
-      expect(Answer.search_question(1, 1)).to eq post
+    context "when it has a post" do
+      it "returns correct data" do
+          expect(Answer.search_question(1, 1)).to eq post
+      end
+    end
+
+    context "when it does not have any posts" do
+      it "returns nil" do
+          expect(Answer.search_question(1, 2)).to eq nil
+      end
     end
   end
 
