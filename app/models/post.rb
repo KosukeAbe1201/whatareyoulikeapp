@@ -5,4 +5,6 @@ class Post < ApplicationRecord
   validates :answer3, { presence: true }
   validates :answer4, { presence: true }
   validates :flag, { presence: true }
+
+  scope :return_posts_num, ->(params) { where(user_id: params).count }
 end

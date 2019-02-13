@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_posts_counter
 
   def set_posts_counter
-    @post_counter = Post.where(user_id: session[:user_id]).count
+    @post_counter = Post.return_posts_num(session[:user_id])
   end
 
   def forbid_make_quiz
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    if @current_user == nil
+    if @current_user.nil?
       flash[:notice] = "ログインが必要です"
       redirect_to new_session_path
     end
