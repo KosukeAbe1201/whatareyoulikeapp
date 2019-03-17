@@ -3,6 +3,5 @@ class User < ApplicationRecord
   validates :name, { presence: true, uniqueness: true }
   validates :password, { presence: true, length:{ minimum: 8 } }
   has_many :posts
-  has_many :keywords
-  has_many :questions
+  has_one :keyword
 end

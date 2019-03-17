@@ -9,10 +9,6 @@ RSpec.describe Post, type: :model do
   let(:invalid_post6) { create(:post, flag: nil) }
 
   describe "(validation)" do
-    it "is valid with all columns" do
-      expect(valid_post).to be_valid
-    end
-
     it "is invalid without a question" do
       expect(invalid_post1).not_to be_valid
     end

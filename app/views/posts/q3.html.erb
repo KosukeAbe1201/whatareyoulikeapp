@@ -40,7 +40,6 @@
             <%= form.text_area :answer4, :class => "textarea",:size => "40x3",value: "うれしいことなど何もない..." %>
           </label>
         </div>
-        <%= form.hidden_field :user_id, :value => session[:user_id] %>
         <%= form.hidden_field :question_num, :value => "3" %>
         <%= form.submit value="NEXT QUESTION", :class => "decide-btn"%>
       <% end %>
